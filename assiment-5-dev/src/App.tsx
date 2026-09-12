@@ -1,4 +1,5 @@
-import Nav from "./componant/Nav"
+import Nav from "./componant/Nav";
+import Bannar from "./componant/Bannar";
 
 function App() {
  
@@ -6,6 +7,7 @@ function App() {
   return (
     <>
       <Nav/>
+      <Bannar/>
     </>
   )
 }
