@@ -1,6 +1,6 @@
 import  { use, useState } from 'react';
 import type { Icard } from '../assets/types/Cardtyps';
-
+import { toast } from 'react-toastify';
 interface CardProps {
   promiss: Promise<Icard[]>;
 }
@@ -10,11 +10,13 @@ const Playcard = ({ promiss }: CardProps) => {
   const [selectedStack, setSelectedStack] =  useState<Icard[]>([]);
 
       const handleAddToStack = (tech: Icard) => {
-                  setSelectedStack((prev) => {
-      const exists = prev.some((item) => item.id === tech.id);
-                   if (exists) return prev;
-      return [...prev, tech];
-             });
+                  const exists = selectedStack.some((item) => item.id === tech.id);
+      
+                   if (exists){toast.warn(`${tech.name} is already in your stack!`);
+                    return ;}
+                    setSelectedStack((prev) => [...prev, tech]);
+                    toast.success(`${tech.name} added to stack!`);
+      
   };
 
   
@@ -22,6 +24,7 @@ const Playcard = ({ promiss }: CardProps) => {
 
 
     setSelectedStack((prev) => prev.filter((item) => item.id !== id));
+    toast.error("Removed from stack!");
   };
 
  
@@ -30,6 +33,7 @@ const Playcard = ({ promiss }: CardProps) => {
 
 
     setSelectedStack([]);
+    toast.info("All items cleared!");
   };
 
   return (
@@ -99,12 +103,20 @@ const Playcard = ({ promiss }: CardProps) => {
                 
                   <button
                           onClick={() => handleAddToStack(item)}
+                          disabled={selectedStack.some((tech) => tech.id === id)}
+                          className={`w-full text-xs font-medium py-2.5 rounded-lg transition-colors ${
+    selectedStack.some((tech) => tech.id === id)
 
-                    className="w-full bg-slate-950 hover:bg-black text-white text-xs font-medium py-2.5 rounded-lg transition-colors"
-                  >
-                    Add to Stack
-                  </button>
+      ? "bg-gray-200 text-gray-500 cursor-not-allowed"
 
+      : "bg-slate-950 hover:bg-black text-white"
+
+  }`}
+>
+  {selectedStack.some((tech) => tech.id === id) ? "✓ Added to Stack" : "Add to Stack"}
+</button>
+
+                  
                 </div>
                 
                      </article>
@@ -168,7 +180,7 @@ const Playcard = ({ promiss }: CardProps) => {
             
             className="w-full border border-red-200 hover:bg-red-50 text-red-500 disabled:opacity-40 text-xs font-medium py-2 rounded-lg transition-colors"
           >
-            Remove All
+            Remove All ✕
           </button>
         </aside>
 

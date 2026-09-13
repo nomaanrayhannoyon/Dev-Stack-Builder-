@@ -5,6 +5,8 @@ import Playcard from "./componant/Playcard";
 import { Suspense } from "react";
 import type { Icard } from "./assets/types/Cardtyps";
 import Footer from"./componant/Footer";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
  const promissFetch=async(): Promise<Icard[]>=>{
   const res=await fetch('../data.json');
@@ -22,6 +24,7 @@ function App() {
          <Playcard promiss={promiss}/>
       </Suspense>
       <Footer />
+      <ToastContainer autoClose={2500} position="top-right"/>
       
 
       </>
