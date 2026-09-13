@@ -3,7 +3,7 @@ export  interface Icard{
     name: string;
     description: string;
     category: string;
-    level: string;
+    difficulty: string;
     rating: number;
     badge: string;
     icon: string;

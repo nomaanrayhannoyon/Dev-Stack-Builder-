@@ -12,17 +12,19 @@ const Banner = () => {
            Development Stack
          </span>
      </h1>
-        <p className="text-gray-600 text-base md:text-lg max-w-lg mt-4">
+        <p className="text-gray-600 text-base md:text-lg max-w-lg mt-4 m-6">
             Explore frontend, backend, database, and tooling options,
 compare them side by side, and put together the stack that fits your
 next project.
         </p>
-   <button type="button1" className=" bg-orange-500 text-white font-medium px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-200">
+        <div className="flex flex-wrap gap-4 mt-6">
+   <button type="button" className=" bg-orange-500 flex gap-4 text-white font-medium px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-200">
     Explore Technologies
    </button>
-   <button type="button2"className="border border-gray 300 text gray-700 font-medium px-6 py-3 rounded-lg hover:bg-gray-100 transtion duration-200">
+   <button type="button"className="border border-gray flex gap-4 300 text- gray-700 font-medium px-6 py-3 rounded-lg hover:bg-gray-100 transition duration-200">
     Learn More
    </button>
+    </div>
     
     </div>
     <div className="flex-1 flex justify-center">

@@ -1,75 +1,47 @@
-# React + TypeScript + Vite
+# Dev Stack - Custom Tech Stack Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React & TypeScript web application designed to help developers explore, select, and manage technologies to build their ideal software stack.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
+- **Responsive Navigation & Banner:** Smooth sticky navigation with mobile hamburger menu and banner overview.
+- **Technology Showcase:** Dynamic cards rendering technologies with detailed ratings, badges, and categories.
+- **Stack Builder Sidebar:** Real-time adding/removing of technologies with duplicate check and clear-all functionality.
+- **Modern UI/UX:** Built with Tailwind CSS following an Orange to Violet gradient brand theme.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Technologies Used
+- **Frontend Framework:** React (Vite)
+- **Language:** TypeScript / JavaScript
+- **Styling:** Tailwind CSS
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ❓ React Conceptual Questions
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 1. What is JSX, and why is it used in React?
+**Answer:** JSX (JavaScript XML) is a syntax extension for JavaScript that allows writing HTML-like code inside JavaScript. It makes writing and understanding component UI structure easier and cleaner.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 2. What is the difference between props and state?
+**Answer:**
+- **Props:** Read-only data passed from a parent component to a child component.
+- **State:** Internal data managed within a component that can change over time and trigger re-renders.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. What does the useState hook do, and where did you use it in this project?
+**Answer:** `useState` tracks and manages dynamic data in functional components. In this project, I used it inside `Playcard.tsx` to keep track of the array of selected technologies in the `selectedStack` state.
 
-```
+### 4. What does the useEffect hook do, and why did you need it to load the JSON data?
+**Answer:** `useEffect` handles side effects such as fetching data from external or local JSON files. It runs after the component renders to load technology data dynamically.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 5. Why does every item in a .map() list need a unique key prop?
+**Answer:** React uses the `key` prop to track and identify which items have changed, been added, or removed. It optimizes performance by updating only the specific elements in the Virtual DOM rather than re-rendering the whole list.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 6. What is conditional rendering? Show one place you used it.
+**Answer:** Conditional rendering means displaying UI elements based on certain conditions. In my sidebar, I used conditional rendering to show "No items added yet" when the `selectedStack` list is empty, and show the list of items when technologies are added.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+### 7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
+**Answer:**
+- **Parent to Child:** Data is passed down directly using `props`.
+- **Child to Parent:** The parent passes a function as a prop to the child, and the child calls that function with data as arguments.
